@@ -1,0 +1,192 @@
+input_text:
+  alarm_name:
+    name: Alarm Name
+    initial: 'My Alarm'
+
+input_datetime:
+  alarm_time:
+    name: Alarm Time
+    has_date: false
+    has_time: true
+
+input_boolean:
+  alarm_enabled:
+    name: Alarm Enabled
+    initial: off
+  alarm_monday:
+    name: Monday
+    initial: off
+  alarm_tuesday:
+    name: Tuesday
+    initial: off
+  alarm_wednesday:
+    name: Wednesday
+    initial: off
+  alarm_thursday:
+    name: Thursday
+    initial: off
+  alarm_friday:
+    name: Friday
+    initial: off
+  alarm_saturday:
+    name: Saturday
+    initial: off
+  alarm_sunday:
+    name: Sunday
+    initial: off
+
+group:
+  alarm_weekdays:
+    name: Alarm Weekdays
+    entities:
+      - input_boolean.alarm_monday
+      - input_boolean.alarm_tuesday
+      - input_boolean.alarm_wednesday
+      - input_boolean.alarm_thursday
+      - input_boolean.alarm_friday
+
+  alarm_weekend:
+    name: Alarm Weekend
+    entities:
+      - input_boolean.alarm_saturday
+      - input_boolean.alarm_sunday
+
+input_select:
+  alarm_sound:
+    name: Alarm Sound
+    options:
+      - 'argon'
+      - 'interface-hint-notification-911'
+      - 'aggressive-medium-sized-dog-growling-56'
+      - 'angry-and-agitated-dog-growling-53'
+      - 'annoyed-big-dog-barking-51'
+      - 'cartoon-insect-buzzing-31'
+      - 'giant-dog-aggressive-growl-59'
+      - 'home-standard-ding-dong-109'
+      - 'retro-game-emergency-alarm-1000'
+      - 'scanning-sci-fi-alarm-905'
+      - 'security-facility-breach-alarm-994'
+      - 'warning-alarm-buzzer-991'
+
+      # Add more sound options as needed
+    initial: 'argon'
+
+  alarm_media_player:
+    name: Alarm Media Player
+    options:
+      - 'kitchen_speaker'
+      - 'living_room_speaker'
+      - 'master_bedroom_speaker'
+      # Add more media player options as needed
+    initial: 'kitchen_speaker'
+
+input_number:
+  alarm_hour:
+    name: Alarm Hour
+    min: 0
+    max: 23
+    step: 1
+    mode: slider
+  alarm_minute:
+    name: Alarm Minute
+    min: 0
+    max: 59
+    step: 1
+    mode: slider
+
+sensor:
+  - platform: template
+    sensors:
+      alarm_time:
+        friendly_name: 'Alarm Time'
+        value_template: "{{'{:02d}:{:02d}'.format(states('input_number.alarm_hour') | int, states('input_number.alarm_minute') | int) }}"
+
+
+automation:
+  - id: alarm_clock_001
+    alias: 'Trigger Alarm'
+    trigger:
+    - platform: template
+      value_template: "{{ states('sensor.time') == states('sensor.alarm_time') }}"
+    condition:
+    - condition: template
+      value_template: >
+        {% set today = 'input_boolean.alarm_' ~ now().strftime("%A") %}
+        {{ is_state('input_boolean.alarm_enabled', 'on') and is_state(today, 'on') }}
+    action:
+    - service: script.turn_on
+      entity_id: script.turn_on_alarm
+      data:
+        variables:
+          alarm_name: "{{ states('input_text.alarm_name') }}"
+
+  - id: alarm_clock_set_initial_alarm_time
+    alias: 'Set Initial Alarm Time'
+    trigger:
+      - platform: state
+        entity_id: input_number.alarm_hour
+      - platform: state
+        entity_id: input_number.alarm_minute
+    action:
+      service: input_datetime.set_datetime
+      data:
+        entity_id: input_datetime.alarm_time
+        time: "{{ states('input_number.alarm_hour') | int | string + ':' + states('input_number.alarm_minute') | int | string }}"
+
+  - id: alarm_clock_update_alarm_time_from_input_datetime
+    alias: Update Alarm Time from Input Datetime
+    trigger:
+      - platform: state
+        entity_id: input_datetime.alarm_time
+    action:
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.alarm_hour
+          value: "{{ state_attr('input_datetime.alarm_time', 'hour') | int }}"
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.alarm_minute
+          value: "{{ state_attr('input_datetime.alarm_time', 'minute') | int }}"
+
+script:
+  turn_on_alarm:
+    sequence:
+    - condition: state
+      entity_id: script.turn_on_alarm
+      state: 'on'
+    - repeat:
+        count: 10
+        sequence:
+        - service: media_player.play_media
+          data_template:
+            entity_id: "media_player.{{ states('input_select.alarm_media_player') }}"
+            media_content_id: "media-source://media_source/local/alarms/{{ states('input_select.alarm_sound') }}.mp3"
+            media_content_type: audio/mpeg
+        - delay:
+            seconds: "{{ state_attr('media_player.' ~ states('input_select.alarm_media_player'), 'media_duration') }}"
+        - service: notify.persistent_notification
+          data:
+            title: "Alarm Triggered"
+            message: "Alarm '{{ alarm_name }}' is ringing!"
+
+  turn_off_alarm:
+    sequence:
+    - service: media_player.media_stop
+      data:
+        entity_id: media_player.kitchen_speaker
+    - service: script.turn_off
+      entity_id: script.turn_on_alarm
+    - service: script.turn_off
+      entity_id: script.snooze_alarm
+
+  snooze_alarm:
+    sequence:
+    - service: media_player.media_stop
+      data:
+        entity_id: media_player.kitchen_speaker
+    - service: script.turn_off
+      entity_id: script.turn_on_alarm
+    - delay:
+        minutes: 10
+    - service: script.turn_on
+      entity_id: script.turn_on_alarm

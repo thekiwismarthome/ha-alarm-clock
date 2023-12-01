@@ -1,0 +1,501 @@
+type: vertical-stack
+cards:
+  - square: true
+    type: grid
+    cards:
+      - show_name: false
+        show_icon: true
+        show_state: false
+        entity: input_text.alarm_name
+        type: custom:button-card
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            service: browser_mod.popup
+            deviceID: this
+            data:
+              content:
+                cards:
+                  - square: false
+                    type: grid
+                    cards:
+                      - content: |
+                          # {{ states('input_text.alarm_name') }}
+                        style:
+                          .: |
+                            ha-card {
+                              background-color: transparent !important;
+                              box-shadow: none !important;
+                            }
+                          ha-markdown:
+                            $: |
+                              h1 {
+                                font-size: 25px;
+                                font-weight: bold;
+                                text-align: center;
+                                letter-spacing: '-0.01em';
+                               }
+                        type: markdown
+                      - content: |
+                          # {{ states('sensor.alarm_time') }}
+                        style:
+                          .: |
+                            ha-card {
+                              background-color: transparent !important;
+                              box-shadow: none !important;
+                            }
+                          ha-markdown:
+                            $: |
+                              h1 {
+                                font-size: 25px;
+                                font-weight: bold;
+                                text-align: center;
+                                letter-spacing: '-0.01em';
+                               }
+                        type: markdown
+                    columns: 2
+                  - entities:
+                      - entity: input_text.alarm_name
+                      - entity: input_boolean.alarm_enabled
+                        name: Alarm Enabled
+                      - entity: sensor.time
+                        name: Current Time
+                      - entity: sensor.alarm_time
+                        name: Alarm Time
+                      - entity: input_number.alarm_hour
+                      - entity: input_number.alarm_minute
+                      - entity: input_select.alarm_sound
+                      - entity: input_select.alarm_media_player
+                    show_header_toggle: false
+                    type: entities
+                  - type: custom:layout-card
+                    layout_type: custom:grid-layout
+                    layout:
+                      grid-template-columns: 1ft 3fr 1fr
+                      grid-template-rows: auto
+                      grid-template-areas: |
+                        "week time-picker off-snooze"
+                    cards:
+                      - square: true
+                        type: grid
+                        cards:
+                          - show_name: false
+                            show_icon: true
+                            type: custom:button-card
+                            icon: mdi:calendar-week
+                            tap_action:
+                              action: toggle
+                            entity: group.alarm_weekdays
+                            styles:
+                              card:
+                                - height: 100%
+                                - border-radius: 1em
+                          - show_name: false
+                            show_icon: true
+                            type: custom:button-card
+                            icon: mdi:calendar-weekend
+                            tap_action:
+                              action: toggle
+                            entity: group.alarm_weekend
+                            styles:
+                              card:
+                                - height: 100%
+                                - border-radius: 1em
+                        columns: 1
+                        view_layout:
+                          grid-area: week
+                      - square: false
+                        type: grid
+                        cards:
+                          - type: custom:time-picker-card
+                            entity: input_datetime.alarm_time
+                            hour_mode: 24
+                            hour_step: 1
+                            minute_step: 1
+                            layout:
+                              hour_mode: double
+                              align_controls: center
+                              name: header
+                            hide:
+                              seconds: true
+                              name: true
+                              icon: true
+                            link_values: true
+                            style: |
+                              ha-card {
+                                border-radius: 2rem;
+                                height: 100%;
+                              }
+                        columns: 1
+                        view_layout:
+                          grid-area: time-picker
+                      - square: true
+                        type: grid
+                        cards:
+                          - show_name: false
+                            show_icon: true
+                            type: custom:button-card
+                            icon: mdi:alarm-off
+                            tap_action:
+                              action: toggle
+                            entity: script.turn_off_alarm
+                            styles:
+                              card:
+                                - height: 100%
+                                - border-radius: 1em
+                          - show_name: false
+                            show_icon: true
+                            type: custom:button-card
+                            icon: mdi:alarm-snooze
+                            tap_action:
+                              action: toggle
+                            entity: script.snooze_alarm
+                            styles:
+                              card:
+                                - height: 100%
+                                - border-radius: 1em
+                        columns: 1
+                        view_layout:
+                          grid-area: off-snooze
+                  - square: true
+                    type: grid
+                    cards:
+                      - type: custom:button-card
+                        show_name: false
+                        show_icon: true
+                        entity: input_boolean.alarm_monday
+                        hold_action:
+                          action: none
+                        name: Mon
+                        tap_action:
+                          action: toggle
+                        icon: mdi:alpha-m-box-outline
+                        styles:
+                          card:
+                            - border-radius: 0.5em
+                            - height: 100%
+                          icon:
+                            - width: 65%
+                      - type: custom:button-card
+                        show_name: false
+                        show_icon: true
+                        entity: input_boolean.alarm_tuesday
+                        hold_action:
+                          action: null
+                        tap_action:
+                          action: toggle
+                        icon: mdi:alpha-t-box-outline
+                        styles:
+                          card:
+                            - border-radius: 0.5em
+                            - height: 100%
+                          icon:
+                            - width: 65%
+                      - type: custom:button-card
+                        show_name: false
+                        show_icon: true
+                        entity: input_boolean.alarm_wednesday
+                        hold_action:
+                          action: null
+                        tap_action:
+                          action: toggle
+                        icon: mdi:alpha-w-box-outline
+                        styles:
+                          card:
+                            - border-radius: 0.5em
+                            - height: 100%
+                          icon:
+                            - width: 65%
+                      - type: custom:button-card
+                        show_name: false
+                        show_icon: true
+                        entity: input_boolean.alarm_thursday
+                        hold_action:
+                          action: null
+                        tap_action:
+                          action: toggle
+                        icon: mdi:alpha-t-box-outline
+                        styles:
+                          card:
+                            - border-radius: 0.5em
+                            - height: 100%
+                          icon:
+                            - width: 65%
+                      - type: custom:button-card
+                        show_name: false
+                        show_icon: true
+                        entity: input_boolean.alarm_friday
+                        hold_action:
+                          action: null
+                        tap_action:
+                          action: toggle
+                        icon: mdi:alpha-f-box-outline
+                        styles:
+                          card:
+                            - border-radius: 0.5em
+                            - height: 100%
+                          icon:
+                            - width: 65%
+                      - type: custom:button-card
+                        show_name: false
+                        show_icon: true
+                        entity: input_boolean.alarm_saturday
+                        hold_action:
+                          action: null
+                        tap_action:
+                          action: toggle
+                        icon: mdi:alpha-s-box-outline
+                        styles:
+                          card:
+                            - border-radius: 0.5em
+                            - height: 100%
+                          icon:
+                            - width: 65%
+                      - type: custom:button-card
+                        show_name: false
+                        show_icon: true
+                        entity: input_boolean.alarm_sunday
+                        hold_action:
+                          action: null
+                        tap_action:
+                          action: toggle
+                        icon: mdi:alpha-s-box-outline
+                        styles:
+                          card:
+                            - border-radius: 0.5em
+                            - height: 100%
+                          icon:
+                            - width: 65%
+                    columns: 7
+                type: vertical-stack
+        icon: mdi:menu
+        styles:
+          card:
+            - border-radius: 0.5em
+            - height: 100%
+          icon:
+            - width: 65%
+      - type: custom:button-card
+        show_name: false
+        show_icon: true
+        entity: input_boolean.alarm_enabled
+        hold_action:
+          action: none
+        name: Mon
+        tap_action:
+          action: toggle
+        icon: mdi:alarm
+        styles:
+          card:
+            - border-radius: 0.5em
+            - height: 100%
+          icon:
+            - width: 65%
+      - show_name: false
+        show_icon: true
+        type: custom:button-card
+        icon: mdi:alarm-off
+        tap_action:
+          action: toggle
+        entity: script.turn_off_alarm
+        styles:
+          card:
+            - border-radius: 0.5em
+            - height: 100%
+          icon:
+            - width: 65%
+      - show_name: false
+        show_icon: true
+        type: custom:button-card
+        icon: mdi:alarm-snooze
+        tap_action:
+          action: toggle
+        entity: script.snooze_alarm
+        styles:
+          card:
+            - border-radius: 0.5em
+            - height: 100%
+          icon:
+            - width: 65%
+    columns: 5
+  - square: false
+    type: grid
+    cards:
+      - show_name: false
+        show_icon: false
+        show_state: true
+        entity: input_text.alarm_name
+        type: custom:button-card
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            service: browser_mod.popup
+            deviceID: this
+            data:
+              content:
+                show_header_toggle: false
+                type: entities
+                entities:
+                  - entity: input_text.alarm_name
+        icon: mdi:lightbulb-group
+        styles:
+          card:
+            - border-radius: 1em
+            - background: none
+          state:
+            - padding-left: 20px
+            - font-size: 2rem
+            - padding: 1em
+      - type: custom:button-card
+        show_name: false
+        show_icon: false
+        show_state: true
+        entity: sensor.alarm_time
+        hold_action:
+          action: none
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            service: browser_mod.popup
+            deviceID: this
+            data:
+              content:
+                type: custom:time-picker-card
+                entity: input_datetime.alarm_time
+                hour_mode: 24
+                hour_step: 1
+                minute_step: 1
+                layout:
+                  hour_mode: double
+                  align_controls: center
+                  name: header
+                hide:
+                  seconds: true
+                  name: true
+                  icon: true
+                link_values: true
+                style: |
+                  ha-card {
+                    border-radius: 2rem;
+                    height: 100%;
+                  }
+        styles:
+          card:
+            - border-radius: 0.5em
+            - background: none
+          state:
+            - justify-self: end
+            - padding-left: 20px
+            - font-size: 2rem
+            - padding: 1em
+    columns: 2
+  - square: true
+    type: grid
+    cards:
+      - type: custom:button-card
+        show_name: false
+        show_icon: true
+        entity: input_boolean.alarm_monday
+        hold_action:
+          action: none
+        name: Mon
+        tap_action:
+          action: toggle
+        icon: mdi:alpha-m-box-outline
+        styles:
+          card:
+            - border-radius: 0.5em
+            - height: 100%
+          icon:
+            - width: 65%
+      - type: custom:button-card
+        show_name: false
+        show_icon: true
+        entity: input_boolean.alarm_tuesday
+        hold_action:
+          action: null
+        tap_action:
+          action: toggle
+        icon: mdi:alpha-t-box-outline
+        styles:
+          card:
+            - border-radius: 0.5em
+            - height: 100%
+          icon:
+            - width: 65%
+      - type: custom:button-card
+        show_name: false
+        show_icon: true
+        entity: input_boolean.alarm_wednesday
+        hold_action:
+          action: null
+        tap_action:
+          action: toggle
+        icon: mdi:alpha-w-box-outline
+        styles:
+          card:
+            - border-radius: 0.5em
+            - height: 100%
+          icon:
+            - width: 65%
+      - type: custom:button-card
+        show_name: false
+        show_icon: true
+        entity: input_boolean.alarm_thursday
+        hold_action:
+          action: null
+        tap_action:
+          action: toggle
+        icon: mdi:alpha-t-box-outline
+        styles:
+          card:
+            - border-radius: 0.5em
+            - height: 100%
+          icon:
+            - width: 65%
+      - type: custom:button-card
+        show_name: false
+        show_icon: true
+        entity: input_boolean.alarm_friday
+        hold_action:
+          action: null
+        tap_action:
+          action: toggle
+        icon: mdi:alpha-f-box-outline
+        styles:
+          card:
+            - border-radius: 0.5em
+            - height: 100%
+          icon:
+            - width: 65%
+      - type: custom:button-card
+        show_name: false
+        show_icon: true
+        entity: input_boolean.alarm_saturday
+        hold_action:
+          action: null
+        tap_action:
+          action: toggle
+        icon: mdi:alpha-s-box-outline
+        styles:
+          card:
+            - border-radius: 0.5em
+            - height: 100%
+          icon:
+            - width: 65%
+      - type: custom:button-card
+        show_name: false
+        show_icon: true
+        entity: input_boolean.alarm_sunday
+        hold_action:
+          action: null
+        tap_action:
+          action: toggle
+        icon: mdi:alpha-s-box-outline
+        styles:
+          card:
+            - border-radius: 0.5em
+            - height: 100%
+          icon:
+            - width: 65%
+    columns: 7
