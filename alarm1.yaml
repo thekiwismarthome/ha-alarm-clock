@@ -1,78 +1,221 @@
 input_text:
-  alarm_name:
-    name: Alarm Name
-    initial: 'My Alarm'
+  alarm_1_name:
+    name: Alarm 1 Name
+    initial: 'My Alarm 1'
+  alarm_2_name:
+    name: Alarm 2 Name
+    initial: 'My Alarm 2'
+  alarm_3_name:
+    name: Alarm 3 Name
+    initial: 'My Alarm 3'
 
 input_datetime:
-  alarm_time:
-    name: Alarm Time
+  alarm_1_time:
+    name: Alarm 1 Time
+    has_date: false
+    has_time: true
+  alarm_2_time:
+    name: Alarm 2 Time
+    has_date: false
+    has_time: true
+  alarm_3_time:
+    name: Alarm 3 Time
     has_date: false
     has_time: true
 
 input_boolean:
-  alarm_enabled:
-    name: Alarm Enabled
+  alarm_1_enabled:
+    name: Alarm 1 Enabled
     initial: off
-  alarm_monday:
+  alarm_2_enabled:
+    name: Alarm 2 Enabled
+    initial: off
+  alarm_3_enabled:
+    name: Alarm 3 Enabled
+    initial: off
+
+  alarm_1_monday:
     name: Monday
     initial: off
-  alarm_tuesday:
+  alarm_1_tuesday:
     name: Tuesday
     initial: off
-  alarm_wednesday:
+  alarm_1_wednesday:
     name: Wednesday
     initial: off
-  alarm_thursday:
+  alarm_1_thursday:
     name: Thursday
     initial: off
-  alarm_friday:
+  alarm_1_friday:
     name: Friday
     initial: off
-  alarm_saturday:
+  alarm_1_saturday:
     name: Saturday
     initial: off
-  alarm_sunday:
+  alarm_1_sunday:
+    name: Sunday
+    initial: off
+
+  alarm_2_monday:
+    name: Monday
+    initial: off
+  alarm_2_tuesday:
+    name: Tuesday
+    initial: off
+  alarm_2_wednesday:
+    name: Wednesday
+    initial: off
+  alarm_2_thursday:
+    name: Thursday
+    initial: off
+  alarm_2_friday:
+    name: Friday
+    initial: off
+  alarm_2_saturday:
+    name: Saturday
+    initial: off
+  alarm_2_sunday:
+    name: Sunday
+    initial: off
+
+  alarm_3_monday:
+    name: Monday
+    initial: off
+  alarm_3_tuesday:
+    name: Tuesday
+    initial: off
+  alarm_3_wednesday:
+    name: Wednesday
+    initial: off
+  alarm_3_thursday:
+    name: Thursday
+    initial: off
+  alarm_3_friday:
+    name: Friday
+    initial: off
+  alarm_3_saturday:
+    name: Saturday
+    initial: off
+  alarm_3_sunday:
     name: Sunday
     initial: off
 
 group:
-  alarm_weekdays:
-    name: Alarm Weekdays
+  alarm_1_weekdays:
+    name: Alarm 1 Weekdays
     entities:
-      - input_boolean.alarm_monday
-      - input_boolean.alarm_tuesday
-      - input_boolean.alarm_wednesday
-      - input_boolean.alarm_thursday
-      - input_boolean.alarm_friday
+      - input_boolean.alarm_1_monday
+      - input_boolean.alarm_1_tuesday
+      - input_boolean.alarm_1_wednesday
+      - input_boolean.alarm_1_thursday
+      - input_boolean.alarm_1_friday
 
-  alarm_weekend:
-    name: Alarm Weekend
+  alarm_1_weekend:
+    name: Alarm 1 Weekend
     entities:
-      - input_boolean.alarm_saturday
-      - input_boolean.alarm_sunday
+      - input_boolean.alarm_1_saturday
+      - input_boolean.alarm_1_sunday
+
+  alarm_2_weekdays:
+    name: Alarm 2 Weekdays
+    entities:
+      - input_boolean.alarm_2_monday
+      - input_boolean.alarm_2_tuesday
+      - input_boolean.alarm_2_wednesday
+      - input_boolean.alarm_2_thursday
+      - input_boolean.alarm_2_friday
+
+  alarm_2_weekend:
+    name: Alarm 2 Weekend
+    entities:
+      - input_boolean.alarm_2_saturday
+      - input_boolean.alarm_2_sunday
+
+  alarm_3_weekdays:
+    name: Alarm 3 Weekdays
+    entities:
+      - input_boolean.alarm_3_monday
+      - input_boolean.alarm_3_tuesday
+      - input_boolean.alarm_3_wednesday
+      - input_boolean.alarm_3_thursday
+      - input_boolean.alarm_3_friday
+
+  alarm_3_weekend:
+    name: Alarm 3 Weekend
+    entities:
+      - input_boolean.alarm_3_saturday
+      - input_boolean.alarm_3_sunday
 
 input_select:
-  alarm_sound:
-    name: Alarm Sound
+  alarm_1_sound:
+    name: Alarm 1 Sound
     options:
-      - 'argon'
-      - 'interface-hint-notification-911'
-      - 'aggressive-medium-sized-dog-growling-56'
-      - 'angry-and-agitated-dog-growling-53'
-      - 'annoyed-big-dog-barking-51'
-      - 'cartoon-insect-buzzing-31'
-      - 'giant-dog-aggressive-growl-59'
-      - 'home-standard-ding-dong-109'
-      - 'retro-game-emergency-alarm-1000'
-      - 'scanning-sci-fi-alarm-905'
-      - 'security-facility-breach-alarm-994'
-      - 'warning-alarm-buzzer-991'
+      - aggressive-medium-sized-dog-growling-56
+      - angry-and-agitated-dog-growling-53
+      - annoyed-big-dog-barking-51
+      - argon
+      - cartoon-insect-buzzing-31
+      - giant-dog-aggressive-growl-59
+      - home-standard-ding-dong-109
+      - interface-hint-notification-911
+      - retro-game-emergency-alarm-1000
+      - scanning-sci-fi-alarm-905
+      - security-facility-breach-alarm-994
+      - warning-alarm-buzzer-991
+    initial: argon
+  alarm_2_sound:
+    name: Alarm 2 Sound
+    options:
+      - aggressive-medium-sized-dog-growling-56
+      - angry-and-agitated-dog-growling-53
+      - annoyed-big-dog-barking-51
+      - argon
+      - cartoon-insect-buzzing-31
+      - giant-dog-aggressive-growl-59
+      - home-standard-ding-dong-109
+      - interface-hint-notification-911
+      - retro-game-emergency-alarm-1000
+      - scanning-sci-fi-alarm-905
+      - security-facility-breach-alarm-994
+      - warning-alarm-buzzer-991
+    initial: argon
+  alarm_3_sound:
+    name: Alarm 3 Sound
+    options:
+      - aggressive-medium-sized-dog-growling-56
+      - angry-and-agitated-dog-growling-53
+      - annoyed-big-dog-barking-51
+      - argon
+      - cartoon-insect-buzzing-31
+      - giant-dog-aggressive-growl-59
+      - home-standard-ding-dong-109
+      - interface-hint-notification-911
+      - retro-game-emergency-alarm-1000
+      - scanning-sci-fi-alarm-905
+      - security-facility-breach-alarm-994
+      - warning-alarm-buzzer-991
+    initial: argon
 
-      # Add more sound options as needed
-    initial: 'argon'
+  alarm_1_media_player:
+    name: Alarm 1 Media Player
+    options:
+      - 'kitchen_speaker'
+      - 'living_room_speaker'
+      - 'master_bedroom_speaker'
+      # Add more media player options as needed
+    initial: 'kitchen_speaker'
 
-  alarm_media_player:
-    name: Alarm Media Player
+  alarm_2_media_player:
+    name: Alarm 2 Media Player
+    options:
+      - 'kitchen_speaker'
+      - 'living_room_speaker'
+      - 'master_bedroom_speaker'
+      # Add more media player options as needed
+    initial: 'kitchen_speaker'
+
+  alarm_3_media_player:
+    name: Alarm 3 Media Player
     options:
       - 'kitchen_speaker'
       - 'living_room_speaker'
@@ -81,14 +224,38 @@ input_select:
     initial: 'kitchen_speaker'
 
 input_number:
-  alarm_hour:
-    name: Alarm Hour
+  alarm_1_hour:
+    name: Alarm 1 Hour
     min: 0
     max: 23
     step: 1
     mode: slider
-  alarm_minute:
-    name: Alarm Minute
+  alarm_1_minute:
+    name: Alarm 1 Minute
+    min: 0
+    max: 59
+    step: 1
+    mode: slider
+  alarm_2_hour:
+    name: Alarm 2 Hour
+    min: 0
+    max: 23
+    step: 1
+    mode: slider
+  alarm_2_minute:
+    name: Alarm 2 Minute
+    min: 0
+    max: 59
+    step: 1
+    mode: slider
+  alarm_3_hour:
+    name: Alarm 3 Hour
+    min: 0
+    max: 23
+    step: 1
+    mode: slider
+  alarm_3_minute:
+    name: Alarm 3 Minute
     min: 0
     max: 59
     step: 1
@@ -97,96 +264,218 @@ input_number:
 sensor:
   - platform: template
     sensors:
-      alarm_time:
-        friendly_name: 'Alarm Time'
-        value_template: "{{'{:02d}:{:02d}'.format(states('input_number.alarm_hour') | int, states('input_number.alarm_minute') | int) }}"
-
+      alarm_1_time:
+        friendly_name: 'Alarm 1 Time'
+        value_template: "{{'{:02d}:{:02d}'.format(states('input_number.alarm_1_hour') | int, states('input_number.alarm_1_minute') | int) }}"
+      alarm_2_time:
+        friendly_name: 'Alarm 2 Time'
+        value_template: "{{'{:02d}:{:02d}'.format(states('input_number.alarm_2_hour') | int, states('input_number.alarm_2_minute') | int) }}"
+      alarm_3_time:
+        friendly_name: 'Alarm 3 Time'
+        value_template: "{{'{:02d}:{:02d}'.format(states('input_number.alarm_3_hour') | int, states('input_number.alarm_3_minute') | int) }}"
 
 automation:
-  - id: alarm_clock_001
-    alias: 'Trigger Alarm'
+  - id: alarm_clock_1
+    alias: 'Trigger Alarm 1'
     trigger:
     - platform: template
-      value_template: "{{ states('sensor.time') == states('sensor.alarm_time') }}"
+      value_template: "{{ states('sensor.time') == states('sensor.alarm_1_time') }}"
     condition:
     - condition: template
       value_template: >
-        {% set today = 'input_boolean.alarm_' ~ now().strftime("%A") %}
-        {{ is_state('input_boolean.alarm_enabled', 'on') and is_state(today, 'on') }}
+        {% set today = 'input_boolean.alarm_' ~ now().strftime("%A").lower() %}
+        {{ is_state('input_boolean.alarm_1_enabled', 'on') and is_state(today, 'on') }}
     action:
     - service: script.turn_on
-      entity_id: script.turn_on_alarm
+      entity_id: script.turn_on_alarm_1
       data:
         variables:
-          alarm_name: "{{ states('input_text.alarm_name') }}"
+          alarm_1_name: "{{ states('input_text.alarm_1_name') }}"
 
-  - id: alarm_clock_set_initial_alarm_time
-    alias: 'Set Initial Alarm Time'
+  - id: alarm_clock_2
+    alias: 'Trigger Alarm 2'
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == states('sensor.alarm_2_time') }}"
+    condition:
+      - condition: template
+        value_template: >
+          {% set today = 'input_boolean.alarm_' ~ now().strftime("%A").lower() %}
+          {{ is_state('input_boolean.alarm_2_enabled', 'on') and is_state(today, 'on') }}
+    action:
+      - service: script.turn_on
+        entity_id: script.turn_on_alarm_2
+        data:
+          variables:
+            alarm_2_name: "{{ states('input_text.alarm_2_name') }}"
+
+  - id: alarm_clock_3
+    alias: 'Trigger Alarm 3'
+    trigger:
+      - platform: template
+        value_template: "{{ states('sensor.time') == states('sensor.alarm_3_time') }}"
+    condition:
+      - condition: template
+        value_template: >
+          {% set today = 'input_boolean.alarm_' ~ now().strftime("%A").lower() %}
+          {{ is_state('input_boolean.alarm_3_enabled', 'on') and is_state(today, 'on') }}
+    action:
+      - service: script.turn_on
+        entity_id: script.turn_on_alarm_3
+        data:
+          variables:
+            alarm_3_name: "{{ states('input_text.alarm_3_name') }}"
+
+  - id: alarm_1_clock_set_initial_alarm_time
+    alias: 'Set Initial Alarm 1 Time'
     trigger:
       - platform: state
-        entity_id: input_number.alarm_hour
+        entity_id: input_number.alarm_1_hour
       - platform: state
-        entity_id: input_number.alarm_minute
+        entity_id: input_number.alarm_1_minute
     action:
       service: input_datetime.set_datetime
       data:
-        entity_id: input_datetime.alarm_time
-        time: "{{ states('input_number.alarm_hour') | int | string + ':' + states('input_number.alarm_minute') | int | string }}"
+        entity_id: input_datetime.alarm_1_time
+        time: "{{ states('input_number.alarm_1_hour') | int | string + ':' + states('input_number.alarm_1_minute') | int | string }}"
 
-  - id: alarm_clock_update_alarm_time_from_input_datetime
+  - id: alarm_1_clock_update_alarm_time_from_input_datetime
     alias: Update Alarm Time from Input Datetime
     trigger:
       - platform: state
-        entity_id: input_datetime.alarm_time
+        entity_id: input_datetime.alarm_1_time
     action:
       - service: input_number.set_value
         data_template:
-          entity_id: input_number.alarm_hour
-          value: "{{ state_attr('input_datetime.alarm_time', 'hour') | int }}"
+          entity_id: input_number.alarm_1_hour
+          value: "{{ state_attr('input_datetime.alarm_1_time', 'hour') | int }}"
       - service: input_number.set_value
         data_template:
-          entity_id: input_number.alarm_minute
-          value: "{{ state_attr('input_datetime.alarm_time', 'minute') | int }}"
+          entity_id: input_number.alarm_1_minute
+          value: "{{ state_attr('input_datetime.alarm_1_time', 'minute') | int }}"
 
 script:
-  turn_on_alarm:
+  
+  turn_on_alarm_1:
     sequence:
     - condition: state
-      entity_id: script.turn_on_alarm
+      entity_id: script.turn_on_alarm_1
       state: 'on'
+    - service: notify.persistent_notification
+      data:
+        title: "Alarm Triggered"
+        message: "Alarm '{{ alarm_1_name }}' is ringing!"
     - repeat:
         count: 10
         sequence:
         - service: media_player.play_media
           data_template:
-            entity_id: "media_player.{{ states('input_select.alarm_media_player') }}"
-            media_content_id: "media-source://media_source/local/alarms/{{ states('input_select.alarm_sound') }}.mp3"
+            entity_id: "media_player.{{ states('input_select.alarm_1_media_player') }}"
+            media_content_id: "media-source://media_source/local/alarms/{{ states('input_select.alarm_2_sound') }}.mp3"
             media_content_type: audio/mpeg
         - delay:
-            seconds: "{{ state_attr('media_player.' ~ states('input_select.alarm_media_player'), 'media_duration') }}"
-        - service: notify.persistent_notification
-          data:
-            title: "Alarm Triggered"
-            message: "Alarm '{{ alarm_name }}' is ringing!"
+            seconds: "{{ state_attr('media_player.' ~ states('input_select.alarm_1_media_player'), 'media_duration') }}"
 
-  turn_off_alarm:
+  turn_on_alarm_2:
+    sequence:
+      - condition: state
+        entity_id: script.turn_on_alarm_2
+        state: 'on'
+      - service: notify.persistent_notification
+        data:
+          title: "Alarm Triggered"
+          message: "Alarm '{{ alarm_2_name }}' is ringing!"
+      - repeat:
+          count: 10
+          sequence:
+            - service: media_player.play_media
+              data_template:
+                entity_id: "media_player.{{ states('input_select.alarm_2_media_player') }}"
+                media_content_id: "media-source://media_source/local/alarms/{{ states('input_select.alarm_2_sound') }}.mp3"
+                media_content_type: audio/mpeg
+            - delay:
+                seconds: "{{ state_attr('media_player.' ~ states('input_select.alarm_2_media_player'), 'media_duration') }}"
+
+  turn_on_alarm_3:
+    sequence:
+      - condition: state
+        entity_id: script.turn_on_alarm_3
+        state: 'on'
+      - service: notify.persistent_notification
+        data:
+          title: "Alarm Triggered"
+          message: "Alarm '{{ alarm_3_name }}' is ringing!"
+      - repeat:
+          count: 10
+          sequence:
+            - service: media_player.play_media
+              data_template:
+                entity_id: "media_player.{{ states('input_select.alarm_3_media_player') }}"
+                media_content_id: "media-source://media_source/local/alarms/{{ states('input_select.alarm_3_sound') }}.mp3"
+                media_content_type: audio/mpeg
+            - delay:
+                seconds: "{{ state_attr('media_player.' ~ states('input_select.alarm_3_media_player'), 'media_duration') }}"
+
+### Turn off Alarms
+  turn_off_alarm_1:
     sequence:
     - service: media_player.media_stop
       data:
-        entity_id: media_player.kitchen_speaker
+        entity_id: "media_player.{{ states('input_select.alarm_1_media_player') }}"
     - service: script.turn_off
-      entity_id: script.turn_on_alarm
+      entity_id: script.turn_on_alarm_1
     - service: script.turn_off
-      entity_id: script.snooze_alarm
-
-  snooze_alarm:
+      entity_id: script.snooze_alarm_1
+  turn_off_alarm_2:
     sequence:
     - service: media_player.media_stop
       data:
-        entity_id: media_player.kitchen_speaker
+        entity_id: "media_player.{{ states('input_select.alarm_2_media_player') }}"
     - service: script.turn_off
-      entity_id: script.turn_on_alarm
+      entity_id: script.turn_on_alarm_2
+    - service: script.turn_off
+      entity_id: script.snooze_alarm_2
+  turn_off_alarm_3:
+    sequence:
+    - service: media_player.media_stop
+      data:
+        entity_id: "media_player.{{ states('input_select.alarm_3_media_player') }}"
+    - service: script.turn_off
+      entity_id: script.turn_on_alarm_3
+    - service: script.turn_off
+      entity_id: script.snooze_alarm_3
+
+### Snooze Alarms
+  snooze_alarm_1:
+    sequence:
+    - service: media_player.media_stop
+      data:
+        entity_id: "media_player.{{ states('input_select.alarm_1_media_player') }}"
+    - service: script.turn_on
+      entity_id: script.turn_off_alarm_1
     - delay:
         minutes: 10
     - service: script.turn_on
-      entity_id: script.turn_on_alarm
+      entity_id: script.turn_on_alarm_1
+  snooze_alarm_2:
+    sequence:
+    - service: media_player.media_stop
+      data:
+        entity_id: "media_player.{{ states('input_select.alarm_2_media_player') }}"
+    - service: script.turn_on
+      entity_id: script.turn_off_alarm_2
+    - delay:
+        minutes: 10
+    - service: script.turn_on
+      entity_id: script.turn_on_alarm_2
+  snooze_alarm_3:
+    sequence:
+    - service: media_player.media_stop
+      data:
+        entity_id: "media_player.{{ states('input_select.alarm_3_media_player') }}"
+    - service: script.turn_on
+      entity_id: script.turn_off_alarm_3
+    - delay:
+        minutes: 10
+    - service: script.turn_on
+      entity_id: script.turn_on_alarm_3
