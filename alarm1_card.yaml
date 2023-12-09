@@ -6,7 +6,7 @@ cards:
       - show_name: false
         show_icon: true
         show_state: false
-        entity: input_text.alarm_name
+        entity: input_text.alarm_1_name
         type: custom:button-card
         tap_action:
           action: fire-dom-event
@@ -20,7 +20,7 @@ cards:
                     type: grid
                     cards:
                       - content: |
-                          # {{ states('input_text.alarm_name') }}
+                          # {{ states('input_text.alarm_1_name') }}
                         style:
                           .: |
                             ha-card {
@@ -37,7 +37,7 @@ cards:
                                }
                         type: markdown
                       - content: |
-                          # {{ states('sensor.alarm_time') }}
+                          # {{ states('sensor.alarm_1_time') }}
                         style:
                           .: |
                             ha-card {
@@ -55,17 +55,17 @@ cards:
                         type: markdown
                     columns: 2
                   - entities:
-                      - entity: input_text.alarm_name
-                      - entity: input_boolean.alarm_enabled
+                      - entity: input_text.alarm_1_name
+                      - entity: input_boolean.alarm_1_enabled
                         name: Alarm Enabled
                       - entity: sensor.time
                         name: Current Time
-                      - entity: sensor.alarm_time
-                        name: Alarm Time
-                      - entity: input_number.alarm_hour
-                      - entity: input_number.alarm_minute
-                      - entity: input_select.alarm_sound
-                      - entity: input_select.alarm_media_player
+                      - entity: sensor.alarm_1_time
+                        name: Alarm 1 Time
+                      - entity: input_number.alarm_1_hour
+                      - entity: input_number.alarm_1_minute
+                      - entity: input_select.alarm_1_sound
+                      - entity: input_select.alarm_1_media_player
                     show_header_toggle: false
                     type: entities
                   - type: custom:layout-card
@@ -85,7 +85,7 @@ cards:
                             icon: mdi:calendar-week
                             tap_action:
                               action: toggle
-                            entity: group.alarm_weekdays
+                            entity: group.alarm_1_weekdays
                             styles:
                               card:
                                 - height: 100%
@@ -96,7 +96,7 @@ cards:
                             icon: mdi:calendar-weekend
                             tap_action:
                               action: toggle
-                            entity: group.alarm_weekend
+                            entity: group.alarm_1_weekend
                             styles:
                               card:
                                 - height: 100%
@@ -108,7 +108,7 @@ cards:
                         type: grid
                         cards:
                           - type: custom:time-picker-card
-                            entity: input_datetime.alarm_time
+                            entity: input_datetime.alarm_1_time
                             hour_mode: 24
                             hour_step: 1
                             minute_step: 1
@@ -138,7 +138,7 @@ cards:
                             icon: mdi:alarm-off
                             tap_action:
                               action: toggle
-                            entity: script.turn_off_alarm
+                            entity: script.turn_off_alarm_1
                             styles:
                               card:
                                 - height: 100%
@@ -149,7 +149,7 @@ cards:
                             icon: mdi:alarm-snooze
                             tap_action:
                               action: toggle
-                            entity: script.snooze_alarm
+                            entity: script.snooze_alarm_1
                             styles:
                               card:
                                 - height: 100%
@@ -163,7 +163,7 @@ cards:
                       - type: custom:button-card
                         show_name: false
                         show_icon: true
-                        entity: input_boolean.alarm_monday
+                        entity: input_boolean.alarm_1_monday
                         hold_action:
                           action: none
                         name: Mon
@@ -179,7 +179,7 @@ cards:
                       - type: custom:button-card
                         show_name: false
                         show_icon: true
-                        entity: input_boolean.alarm_tuesday
+                        entity: input_boolean.alarm_1_tuesday
                         hold_action:
                           action: null
                         tap_action:
@@ -194,7 +194,7 @@ cards:
                       - type: custom:button-card
                         show_name: false
                         show_icon: true
-                        entity: input_boolean.alarm_wednesday
+                        entity: input_boolean.alarm_1_wednesday
                         hold_action:
                           action: null
                         tap_action:
@@ -209,7 +209,7 @@ cards:
                       - type: custom:button-card
                         show_name: false
                         show_icon: true
-                        entity: input_boolean.alarm_thursday
+                        entity: input_boolean.alarm_1_thursday
                         hold_action:
                           action: null
                         tap_action:
@@ -224,7 +224,7 @@ cards:
                       - type: custom:button-card
                         show_name: false
                         show_icon: true
-                        entity: input_boolean.alarm_friday
+                        entity: input_boolean.alarm_1_friday
                         hold_action:
                           action: null
                         tap_action:
@@ -239,7 +239,7 @@ cards:
                       - type: custom:button-card
                         show_name: false
                         show_icon: true
-                        entity: input_boolean.alarm_saturday
+                        entity: input_boolean.alarm_1_saturday
                         hold_action:
                           action: null
                         tap_action:
@@ -254,7 +254,7 @@ cards:
                       - type: custom:button-card
                         show_name: false
                         show_icon: true
-                        entity: input_boolean.alarm_sunday
+                        entity: input_boolean.alarm_1_sunday
                         hold_action:
                           action: null
                         tap_action:
@@ -278,7 +278,7 @@ cards:
       - type: custom:button-card
         show_name: false
         show_icon: true
-        entity: input_boolean.alarm_enabled
+        entity: input_boolean.alarm_1_enabled
         hold_action:
           action: none
         name: Mon
@@ -297,7 +297,7 @@ cards:
         icon: mdi:alarm-off
         tap_action:
           action: toggle
-        entity: script.turn_off_alarm
+        entity: script.turn_off_alarm_1
         styles:
           card:
             - border-radius: 0.5em
@@ -310,7 +310,7 @@ cards:
         icon: mdi:alarm-snooze
         tap_action:
           action: toggle
-        entity: script.snooze_alarm
+        entity: script.snooze_alarm_1
         styles:
           card:
             - border-radius: 0.5em
@@ -395,7 +395,7 @@ cards:
       - type: custom:button-card
         show_name: false
         show_icon: true
-        entity: input_boolean.alarm_monday
+        entity: input_boolean.alarm_1_monday
         hold_action:
           action: none
         name: Mon
@@ -411,7 +411,7 @@ cards:
       - type: custom:button-card
         show_name: false
         show_icon: true
-        entity: input_boolean.alarm_tuesday
+        entity: input_boolean.alarm_1_tuesday
         hold_action:
           action: null
         tap_action:
@@ -426,7 +426,7 @@ cards:
       - type: custom:button-card
         show_name: false
         show_icon: true
-        entity: input_boolean.alarm_wednesday
+        entity: input_boolean.alarm_1_wednesday
         hold_action:
           action: null
         tap_action:
@@ -441,7 +441,7 @@ cards:
       - type: custom:button-card
         show_name: false
         show_icon: true
-        entity: input_boolean.alarm_thursday
+        entity: input_boolean.alarm_1_thursday
         hold_action:
           action: null
         tap_action:
@@ -456,7 +456,7 @@ cards:
       - type: custom:button-card
         show_name: false
         show_icon: true
-        entity: input_boolean.alarm_friday
+        entity: input_boolean.alarm_1_friday
         hold_action:
           action: null
         tap_action:
@@ -471,7 +471,7 @@ cards:
       - type: custom:button-card
         show_name: false
         show_icon: true
-        entity: input_boolean.alarm_saturday
+        entity: input_boolean.alarm_1_saturday
         hold_action:
           action: null
         tap_action:
@@ -486,7 +486,7 @@ cards:
       - type: custom:button-card
         show_name: false
         show_icon: true
-        entity: input_boolean.alarm_sunday
+        entity: input_boolean.alarm_1_sunday
         hold_action:
           action: null
         tap_action:
