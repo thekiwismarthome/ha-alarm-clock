@@ -1,90 +1,51 @@
-# ha-alarm-clock
+# Home Assistant Alarm Configuration
+## ha-alarm-clock
 
 ![image](https://github.com/thekiwismarthome/ha-alarm-clock/assets/134335563/c96d6f0b-19a7-4f58-9db3-c531b105b530)
 
 ![image](https://github.com/thekiwismarthome/ha-alarm-clock/assets/134335563/94457236-0661-4a7f-8f91-176305b08532)
 
-## Alarm System Configuration
 
-### Input Elements:
 
-#### `input_text`:
-- **alarm_name:**
-  - `name`: Alarm Name
-  - `initial`: 'My Alarm'
+This YAML file serves as a Home Assistant configuration for managing alarms. It encompasses various components and functionalities. Below is an overview of key sections:
 
-#### `input_datetime`:
-- **alarm_time:**
-  - `name`: Alarm Time
-  - `has_date`: false
-  - `has_time`: true
+## Input Components
 
-#### `input_boolean`:
-- **alarm_enabled:**
-  - `name`: Alarm Enabled
-  - `initial`: off
-- **alarm_monday, alarm_tuesday, ..., alarm_sunday:**
-  - Individual boolean inputs for each day, all initially set to 'off'.
+### `input_text`
+- Defines names for three alarms (`alarm_1_name`, `alarm_2_name`, `alarm_3_name`).
 
-#### `group`:
-- **alarm_weekdays:**
-  - Group of boolean inputs for weekdays.
-- **alarm_weekend:**
-  - Group of boolean inputs for the weekend.
+### `input_datetime`
+- Sets up time components for each alarm (`alarm_1_time`, `alarm_2_time`, `alarm_3_time`).
 
-#### `input_select`:
-- **alarm_sound:**
-  - `name`: Alarm Sound
-  - `options`: List of sound options.
-  - `initial`: 'argon'
-- **alarm_media_player:**
-  - `name`: Alarm Media Player
-  - `options`: List of media player options.
-  - `initial`: 'kitchen_speaker'
+### `input_boolean`
+- Manages the state of each alarm (enabled or disabled) and specifies the days of the week for each alarm.
 
-#### `input_number`:
-- **alarm_hour:**
-  - `name`: Alarm Hour
-  - `min`, `max`: Range for hours (0-23).
-  - `step`: Increment step.
-  - `mode`: Slider input.
+### `input_select`
+- Allows users to choose sound and media player options for each alarm.
 
-- **alarm_minute:**
-  - `name`: Alarm Minute
-  - `min`, `max`: Range for minutes (0-59).
-  - `step`: Increment step.
-  - `mode`: Slider input.
+### `input_number`
+- Provides sliders for setting the hour and minute for each alarm.
 
-### Sensors:
+## Groups
 
-- **sensor:**
-  - A template sensor named 'alarm_time' calculates the alarm time based on the input_number values for hour and minute.
+- Groups `input_boolean` entities for each alarm into weekdays and weekends.
 
-### Automations:
+## Sensors
 
-- **alarm_clock_001:**
-  - Triggered when the current time matches the calculated 'alarm_time' and the alarm is enabled for the current day.
-  - Activates the 'turn_on_alarm' script.
+- Creates template sensors for each alarm, displaying the formatted time.
 
-- **alarm_clock_set_initial_alarm_time:**
-  - Triggered when either the input_number for hours or minutes changes.
-  - Sets the initial alarm time in the input_datetime 'alarm_time'.
+## Automations
 
-- **alarm_clock_update_alarm_time_from_input_datetime:**
-  - Triggered when the input_datetime 'alarm_time' changes.
-  - Updates the input_number values for hour and minute.
+- Sets up automations to trigger alarms based on specified times, considering the day and whether the alarm is enabled.
 
-### Scripts:
+## Scripts
 
-- **turn_on_alarm:**
-  - If the script is in the 'on' state, it plays the selected media on the chosen media player.
-  - Repeats for 10 times.
-  - Notifies a persistent notification with the alarm details.
+- Defines scripts to trigger and manage alarms, including turning on, turning off, and snoozing.
 
-- **turn_off_alarm:**
-  - Stops the media player and turns off the 'turn_on_alarm' and 'snooze_alarm' scripts.
+## Usage
 
-- **snooze_alarm:**
-  - Stops the media player, turns off 'turn_on_alarm', waits for 10 minutes, and then turns on 'turn_on_alarm' again.
+1. **Integration:** Integrate this configuration into your Home Assistant setup.
+2. **Customization:** Customize the configuration as needed, such as adding more alarms or adjusting sound and media player options.
 
+Feel free to explore and adapt this configuration to suit your preferences. For detailed steps on integrating and customizing, refer to the official Home Assistant documentation.
 
