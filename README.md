@@ -1,4 +1,9 @@
 # ha-alarm-clock
+
+![image](https://github.com/thekiwismarthome/ha-alarm-clock/assets/134335563/c96d6f0b-19a7-4f58-9db3-c531b105b530)
+
+![image](https://github.com/thekiwismarthome/ha-alarm-clock/assets/134335563/94457236-0661-4a7f-8f91-176305b08532)
+
 ## Alarm System Configuration
 
 ### Input Elements:
